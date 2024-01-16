@@ -1,0 +1,53 @@
+@mixin buttonStyle() {
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: var(--primary-color-btn);
+    color: white;
+    font-weight: bold;
+
+    &:hover {
+        background-color: var(--primary-color-btn-hover);
+    }
+}
+
+@mixin buttonStyleAccept() {
+    @include buttonStyle();
+    background-color: rgb(22 101 52);
+
+    &:hover {
+        background-color: rgb(22 163 74);
+    }
+}
+
+@mixin buttonStyleCancel() {
+    @include buttonStyle();
+    background-color: rgb(159 18 57);
+
+    &:hover {
+        background-color: rgb(225 29 72);
+    }
+}
+
+@mixin buttonIconStyle() {
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--hover-color);
+    }
+}
+
+@mixin inputStyle() {
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    background-color: var(--input-bg);
+    outline: none;
+    &:focus {
+        border: 1px solid rgb(59 130 246);
+        outline: 1px solid rgb(59 130 246);
+    }
+}

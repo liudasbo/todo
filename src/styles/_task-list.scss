@@ -1,0 +1,50 @@
+.content__task-list {
+    border-radius: 5px;
+    padding: 20px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+
+    h2 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 20px;
+        font-size: 1.5rem;
+    }
+
+    ul {
+        margin-top: 20px;
+
+        li {
+            border: 1px solid var(--border-color);
+            padding: 5px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            
+            &:hover {
+                border: 1px solid var(--text-color);
+            }
+            
+            .left__task-side, .right__task-side {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                .material-symbols-outlined {
+                    @include buttonIconStyle();
+                }
+            }
+
+            .right__task-side {
+                margin-left: auto;
+            }
+        }
+    }
+
+
+}

@@ -1,0 +1,42 @@
+// Light theme colors 
+$bg-white: rgb(255 255 255);
+$border-gray-200: rgb(229 231 235);
+$bg-gray-50: rgb(249 250 251);
+$text-gray-900: rgb(17 24 39);
+$text-gray-500: rgb(107 114 128);
+$bg-gray-100: rgb(243 244 246);
+
+// Dark theme colors
+$bg-gray-800: rgb(31 41 55);
+$border-gray-700: rgb(55 65 81);
+$bg-gray-900: rgb(17 24 39);
+$text-white: rgb(255 255 255);
+$text-gray-400: rgb(156 163 175);
+$bg-gray-700: rgb(55 65 81);
+$bg-gray-500: rgb(107 114 128);
+
+$caret-gray-300: #d1d5db;
+
+:root {
+    --bg-color: #{$bg-white};
+    --border-color: #{$border-gray-200};
+    --bg-color-primary: #{$bg-gray-50};
+    --text-color: #{$text-gray-900};
+    --icons-color: #{$text-gray-500};
+    --hover-color: #{$bg-gray-100};
+    --primary-color-btn: #{$bg-gray-900};
+    --primary-color-btn-hover: #{$bg-gray-700};
+    --input-bg: #{$bg-white};
+}
+
+:root.dark {
+    --bg-color: #{$bg-gray-800};
+    --border-color: #{$border-gray-700};
+    --bg-color-primary: #{$bg-gray-900};
+    --text-color: #{$text-white};
+    --icons-color: #{$text-gray-400};
+    --hover-color: #{$bg-gray-700};
+    --primary-color-btn: #{$bg-gray-500};
+    --primary-color-btn-hover: #{$bg-gray-700};
+    --input-bg: #{$caret-gray-300};
+}

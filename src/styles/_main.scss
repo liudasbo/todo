@@ -1,0 +1,61 @@
+main {
+    background-color: var(--bg-color-primary);
+    min-height: calc(100vh - 70px);
+    display: flex;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin: 20px;
+
+    button {
+        @include buttonStyle();
+    }
+
+    .content__form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .content__inputs {
+            display: flex;
+            gap: 10px;
+
+            input {
+                @include inputStyle();
+            }
+
+            input[type="text"] {
+                width: 100%;
+            }
+
+            input[type="date"] {
+                width: 30%;
+            }
+        }
+
+        .content__buttons {
+            display: flex;
+            gap: 10px;
+            
+            button {
+                width: 100%;
+
+                &:first-child {
+                    @include buttonStyleAccept();
+                }
+
+                &:last-child {
+                    @include buttonStyleCancel();
+                }
+            }
+        }
+    }
+
+    .hide {
+        display: none;
+    }
+}
