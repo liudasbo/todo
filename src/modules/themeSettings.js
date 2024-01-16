@@ -1,3 +1,4 @@
+import { deleteProject } from "./deleteProject";
 import { saveThemeToLocalStorage } from "./localStorage";
 
 const themeButton = document.querySelector('#themeBtn');
@@ -46,9 +47,17 @@ function toggleMenu() {
     }
 }
 
-// change menu button styles
-function updateMenuBtnStyle() {
-    const menuButtons = document.querySelectorAll('.menu ul li');
+// updates menu buttons selectors
+export function updateMenuBtnSelector() {
+    const updatedButtons = document.querySelectorAll('.menu ul li');
+    updateMenuBtnStyle(updatedButtons);
+
+    const deleteProjectButtons = document.querySelectorAll('.deleteProjectBtn');
+    deleteProject(deleteProjectButtons);
+}
+
+function updateMenuBtnStyle(updatedButtons) {
+    const menuButtons = updatedButtons;
     let lastButton = menuButtons[0];
 
     menuButtons.forEach((button) => {
@@ -62,4 +71,4 @@ function updateMenuBtnStyle() {
     })
 }
 
-updateMenuBtnStyle();
+
