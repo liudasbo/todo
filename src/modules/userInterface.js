@@ -4,7 +4,6 @@ import { Storage } from "./storage";
 // add project filters to Today and This week
 // side menu toggle
 // responsive
-// add task and project validation
 
 const showProjectFormBtn = document.querySelector('#showProjectFormBtn');
 showProjectFormBtn.addEventListener('click', toggleProjectForm);
@@ -50,13 +49,35 @@ function toggleProjectForm(event) {
 
 // add project
 function addProject() {
-    Storage.addNewProject(projectInput.value);
+
+    if (projectNameValidation(projectInput.value)) {
+        Storage.addNewProject(projectInput.value);
+    }
 
     loadProjectList();
     toggleProjectForm(event);
 }
 
-// add project validation
+function projectNameValidation(projectName) {
+    const regex = /^([\w \:\-\.\,\(\)\/ \-\[\]]{1,125})$/;
+    const projectsNames = Storage.getProjectsNames();
+
+    if (projectName.length < 1) {
+        alert (`Project name can't be empty`)
+        return false;
+    } else if (!(regex.test(projectName))) {
+        alert("Project name can't have special symbols");
+        return false;
+    } else if ((projectsNames.find((name) => name === projectName))) {
+        alert(`Project ${projectName} already exists`);
+        return false;
+    } else if (projectName.length > 36) {
+        alert(`Project name can't be longer than 35 symbols`)
+        return false;
+    }
+
+    return true;
+} 
 
 // choose project
 let menuProjectButtons = document.querySelectorAll('.menu ul li');
@@ -267,7 +288,6 @@ export function loadTodoList() {
             inputElement.focus();
 
             inputElement.addEventListener('blur', function() {
-                console.log('save')
                 const newDate = inputElement.value;
 
                 const data = Storage.loadObjectsFromLS();
@@ -316,16 +336,38 @@ function toggleTaskForm() {
 function addTask() {
     const projectName = activeProjectButton.querySelector('p').textContent;
     
-    let data = Storage.loadObjectsFromLS();
-
-    let selectedProject = data.find((project) => project.name === projectName);
-    selectedProject.addNewTask(taskTextInput.value, taskDateInput.value, projectName);
-    Storage.saveToLocalStorage(data);
+    if (taskNameValidation(taskTextInput.value, projectName)) {
+        let data = Storage.loadObjectsFromLS();
+        let selectedProject = data.find((project) => project.name === projectName);
+        selectedProject.addNewTask(taskTextInput.value, taskDateInput.value, projectName);
+        Storage.saveToLocalStorage(data);
+    }
     
     loadTodoList();
     toggleTaskForm();
 }
-// add task validation
+
+function taskNameValidation(taskName, taskProject) {
+    const regex = /^([\w \:\-\.\,\(\)\/ \-\[\]]{1,125})$/;
+    const data = Storage.loadObjectsFromLS();
+    const allTasks = [].concat(...data.map((project) => project.tasks));
+
+    if (taskName.length < 1) {
+        alert (`Task name can't be empty`);
+        return false;
+    } else if (!(regex.test(taskName))) {
+        alert("Task name can't have special symbols");
+        return false;
+    } else if (taskName.length > 40) {
+        alert(`Task name can't be longer than 40 symbols`)
+        return false;
+    } else if ((allTasks.some((task) => task.name === taskName && task.projectName === taskProject))) {
+        alert(`Task ${taskName} already exists in ${taskProject} project`)
+        return false;
+    }
+
+    return true;
+}
 
 // toggle theme
 const themeButton = document.querySelector('#themeBtn');
