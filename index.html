@@ -3,9 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <title>Todo</title>
 <script defer src="main.js"></script></head>
 <body>
-    
+    <header>
+        <span class="material-symbols-outlined" id="closeMenuBtn">
+            close
+        </span>
+        <a href="#" class="logo">TODO.</a>
+        <span class="material-symbols-outlined" id="themeBtn">
+            dark_mode
+        </span>
+    </header>
+    <main>
+        <div class="menu">
+
+            <div class="menu__default-projects">
+                <ul>
+                    <li class="active">
+                        <span class="material-symbols-outlined">inbox</span>
+                        <p>All tasks</p>
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined">Today</span>
+                        <p>Today</p>
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined">date_range</span>
+                        <p>This week</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu__user-projects">
+                <h3>Projects</h3>
+                <ul>
+                    <li>
+                        <span class="material-symbols-outlined">inventory_2</span>
+                        <p>Project 1</p>
+                        <span class="material-symbols-outlined deleteProjectBtn">delete</span>
+                    </li>
+                </ul>
+
+                <form action="submit" class="menu__form hide">
+                    <input type="text" placeholder="Project name..." id="projectInput">
+                    <div class="menu__form-buttons">
+                        <button id="addProjectBtn">Add</button>
+                        <button id="cancelProjectFormBtn">Cancel</button>
+                    </div>
+                </form>
+
+                <button id="showProjectFormBtn">Add project</button>
+            </div>
+
+        </div>
+        
+        <div class="content">
+
+            <div class="content__task-list">
+                <h2>All tasks</h2>
+
+                <ul>
+                    <li>
+                        <div class="left__task-side">
+                            <span class="material-symbols-outlined">
+                                radio_button_unchecked
+                            </span>
+                            <p>Task 1</p>
+                            <p>(Project 1)</p>
+                        </div>
+                        <div class="right__task-side">
+                            <p>No date</p>
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+            <form action="submit" class="content__form hide">
+                <div class="content__inputs">
+                    <input type="text" placeholder="Task..." id="taskTextInput">
+                    <input type="date" id="taskDateInput">
+                </div>
+                <div class="content__buttons">
+                    <button id="addTaskBtn">Add</button>
+                    <button id="cancelTaskFormBtn">Cancel</button>
+                </div>
+            </form>
+
+            <button id="showTaskFromBtn">Add task</button>
+        </div>
+
+    </main>
 </body>
 </html>
