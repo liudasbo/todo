@@ -1,18 +1,14 @@
+import { Storage } from "./storage";
+import { Task } from "./task";
+
 export class Project {
     constructor(name) {
         this.name = name;
         this.tasks = [];
     }
 
-    getName() {
-        return this.name;
-    }
-
-    setTasks(tasks) {
-        this.tasks = tasks;
-    }
-
-    getTasks(tasks) {
-        return this.tasks;
+    addNewTask(name, dueDate, projectName) {
+        const newTask = new Task(name, dueDate, projectName);
+        this.tasks.push(newTask);
     }
 }

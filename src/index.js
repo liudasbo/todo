@@ -1,12 +1,13 @@
 import './styles/style.scss';
-import './modules/themeSettings';
-import './modules/localStorage';
-import './modules/addTask';
-import './modules/addProject';
-import './modules/loadProjectList';
-import './modules/deleteProject';
-import { loadProjectList } from './modules/loadProjectList';
+import './modules/storage';
+import './modules/userInterface';
+import { Storage } from './modules/storage';
+import { loadProjectList, loadTheme, loadTodoList } from './modules/userInterface';
 
-window.onload = (event) => {
+window.onload = () => {
+    Storage.addDefaultProjects();
+    Storage.filterProjectsTasks();
+    loadTodoList();
     loadProjectList();
-};  
+    loadTheme();
+}  

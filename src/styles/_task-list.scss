@@ -17,6 +17,21 @@
 
     ul {
         margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .editTaskButton {
+            @include inputStyle();
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            color: var(--text-color);
+        }
+
+        .editTaskDateBtn {
+            cursor: pointer;
+        }
 
         li {
             border: 1px solid var(--border-color);
