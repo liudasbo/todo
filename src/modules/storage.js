@@ -1,6 +1,7 @@
 import { Project } from "./project";
 import { Task } from "./task";
 import { loadProjectList } from "./userInterface";
+import { isToday, isThisWeek } from "date-fns";
 
 export class Storage {
     
@@ -80,11 +81,40 @@ export class Storage {
             
         })
 
-       
-
         // Today project
+        const todayProject = data.find((project) => project.name === 'Today');
+        const todayTasks = allTasks.filter((task) => isToday(new Date(task.dueDate)));
+        todayTasks.forEach((task) => {
+            if (!(todayProject.tasks.find((existingTask) => existingTask.name === task.name && existingTask.dueDate === task.dueDate && existingTask.projectName === task.projectName))) {
+                const newTask = new Task(task.name, task.dueDate, task.projectName);
+                newTask.done = task.done;
+                todayProject.tasks.push(newTask);
+            }
+        })
+
+        todayProject.tasks = todayProject.tasks.filter((existingTask) =>
+            todayTasks.some((task) =>
+                existingTask.name === task.name && existingTask.dueDate === task.dueDate && existingTask.projectName === task.projectName)
+        );
 
         // This week project
+        const thisWeekProject = data.find((project) => project.name === 'This week');
+        const thisWeekTasks = allTasks.filter((task) => isThisWeek(new Date(task.dueDate)));
+        thisWeekTasks.forEach((task) => {
+
+            if (!(thisWeekProject.tasks.find((existingTask) => existingTask.name === task.name && existingTask.dueDate === task.dueDate && existingTask.projectName === task.projectName))) {
+                const newTask = new Task(task.name, task.dueDate, task.projectName);
+                newTask.done = task.done;
+                thisWeekProject.tasks.push(newTask);
+            }
+        })
+
+        thisWeekProject.tasks = thisWeekProject.tasks.filter((existingTask) =>
+            thisWeekTasks.some((task) =>
+                existingTask.name === task.name && existingTask.dueDate === task.dueDate && existingTask.projectName === task.projectName
+            )
+        );
+
         Storage.saveToLocalStorage(data);
     }
 

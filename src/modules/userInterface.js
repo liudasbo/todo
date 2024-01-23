@@ -1,8 +1,5 @@
 import { Storage } from "./storage";
 
-// project todo list: 
-// add project filters to Today and This week
-
 const showProjectFormBtn = document.querySelector('#showProjectFormBtn');
 showProjectFormBtn.addEventListener('click', toggleProjectForm);
 
@@ -305,6 +302,7 @@ export function loadTodoList() {
                 newParagraph.classList.add('editTaskDateBtn');
 
                 inputElement.replaceWith(newParagraph);
+                Storage.filterProjectsTasks();
                 loadTodoList();
             })
         })
