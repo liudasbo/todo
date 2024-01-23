@@ -2,8 +2,6 @@ import { Storage } from "./storage";
 
 // project todo list: 
 // add project filters to Today and This week
-// side menu toggle
-// responsive
 
 const showProjectFormBtn = document.querySelector('#showProjectFormBtn');
 showProjectFormBtn.addEventListener('click', toggleProjectForm);
@@ -400,3 +398,18 @@ export function loadTheme() {
         themeButton.textContent = 'dark_mode';
     }
 }
+
+const toggleMenuBtn = document.querySelector('#toggleMenuBtn');
+toggleMenuBtn.addEventListener('click', toggleMenu);
+
+function toggleMenu() {
+    const menu = document.querySelector('.menu');
+
+    if (menu.classList.contains('hide')) {
+        menu.classList.remove('hide');
+        toggleMenuBtn.textContent = 'close';
+    } else {
+        menu.classList.add('hide');
+        toggleMenuBtn.textContent = 'menu';
+    }
+} 

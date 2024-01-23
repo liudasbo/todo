@@ -2,6 +2,11 @@ main {
     background-color: var(--bg-color-primary);
     min-height: calc(100vh - 70px);
     display: flex;
+
+    @include responsive(medium) {
+        flex-direction: column;
+    }
+
 }
 
 .content {
@@ -10,6 +15,11 @@ main {
     gap: 20px;
     width: 100%;
     margin: 20px;
+
+    @include responsive(medium) {
+        width: auto;
+        margin: 10px;
+    }
 
     button {
         @include buttonStyle();

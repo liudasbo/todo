@@ -6,6 +6,12 @@
     border-right: 1px solid var(--border-color);
     color: var(--text-color);
 
+    @include responsive(medium) {
+        max-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
     ul {
         display: flex;
         flex-direction: column;

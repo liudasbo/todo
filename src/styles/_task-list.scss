@@ -9,6 +9,15 @@
     width: 100%;
     height: fit-content;
 
+    
+    @include responsive(medium) {
+        padding: 10px;
+
+        p {
+            font-size: 0.875rem;
+        }
+    }
+
     h2 {
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 20px;

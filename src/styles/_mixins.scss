@@ -51,3 +51,31 @@
         outline: 1px solid rgb(59 130 246);
     }
 }
+
+/*
+* Variables for breakpoints
+*/
+$mobile-landscape: 568px;
+$tablet: 768px;
+$desktop: 992px;
+
+/*
+* Map for breakpoints
+*/
+$breakpoints: (
+    "small": $mobile-landscape,
+    "medium": $tablet,
+    "large": $desktop,
+); 
+
+@mixin responsive($size) {
+    $query: map-get($breakpoints, $size);
+
+    @if $query {
+        @media (max-width: $query) {
+            @content;
+        }
+    } @else {
+        @error "Invalid breakpoint size: #{$size}. Please use 'small', 'medium', or 'large'.";
+    }
+}
